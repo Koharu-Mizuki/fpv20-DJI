@@ -31,16 +31,17 @@ public class DS5Preset {
             btn_names[i] = String.format("BTN%d", i);
         }
 
-        // 轴映射
+        // 轴映射（DualSense 在 GLFW 原始轴序：0=左X 1=左Y 2=右X 3=L2 4=R2 5=右Y）
         names[0] = "y";    // 左摇杆 X → Yaw
         names[1] = "t";    // 左摇杆 Y → Throttle（需反转）
         names[2] = "r";    // 右摇杆 X → Roll
-        names[3] = "p";    // 右摇杆 Y → Pitch（需反转）
-        names[4] = "aux1"; // L2 扳机
-        names[5] = "aux2"; // R2 扳机
+        names[3] = "aux1"; // L2 扳机
+        names[4] = "aux2"; // R2 扳机
+        names[5] = "p";    // 右摇杆 Y → Pitch（需反转）
 
-        // 摇杆四通道：MaxMidMin，rate_a=0.3（超限曲线），rate_b=0.5（中心曲线）
-        for (int i = 0; i < 4; i++) {
+        // 四个摇杆轴（0/1/2/5）：MaxMidMin，居中=0
+        int[] stick_axes = {0, 1, 2, 5};
+        for (int i : stick_axes) {
             cal[i].max = 1.0f;
             cal[i].min = -1.0f;
             cal[i].mid = 0.0f;
@@ -53,10 +54,11 @@ public class DS5Preset {
         // 左摇杆 Y（油门）反转：DS5 上推为负值，反转后上推=正油门
         cal[1].reversed = true;
         // 右摇杆 Y（俯仰）反转：上推为负值，反转后上推=正俯仰
-        cal[3].reversed = true;
+        cal[5].reversed = true;
 
-        // 扳机：MaxMin，DS5 扳机未按=-1，按满=+1，映射到 0~1
-        for (int i = 4; i <= 5; i++) {
+        // 两个扳机轴（3/4 = L2/R2）：MaxMin，未按=-1，按满=+1，映射到 0~1
+        int[] trigger_axes = {3, 4};
+        for (int i : trigger_axes) {
             cal[i].max = 1.0f;
             cal[i].min = -1.0f;
             cal[i].mid = 0.0f;
@@ -66,8 +68,9 @@ public class DS5Preset {
             cal[i].reversed = false;
         }
 
-        // 按钮映射
-        btn_names[0] = "sw";   // × 解锁
+        // 按钮映射（DualSense GLFW 按钮序：0=× 1=○ 2=□ 3=△ 4=L1 5=R1 … 13=触控板）
+        btn_names[4] = "sw";   // L1 解锁/上锁
+        btn_names[5] = "spd";  // R1 速度高/低切换
         btn_names[3] = "md";   // △ 飞行模式切换
         btn_names[13] = "sm";  // 触控板 慢动作
 
