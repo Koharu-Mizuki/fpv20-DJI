@@ -40,3 +40,7 @@ replay_*.log
 *.jfr
 
 src/main/generated/.cache
+
+# claude (本地私密配置，含人设/邮箱/任务，勿追踪)
+
+.claude/
