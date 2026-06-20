@@ -45,9 +45,13 @@ public final class TranslateKeys {
     public static final String BTN_DS5_PRESET = "fpv20.btn.ds5_preset";
     public static final String BTN_PRESET_APPLIED = "fpv20.btn.preset_applied";
 
-    // 飞行模式
-    public static final String BTN_MODE_ACRO = "fpv20.btn.mode.acro";
-    public static final String BTN_MODE_ANGLE = "fpv20.btn.mode.angle";
-    public static final String BTN_MODE_HORIZON = "fpv20.btn.mode.horizon";
+    // 飞行模式（N/S/M 对标 DJI Avata 2）
+    public static final String BTN_MODE_NORMAL = "fpv20.btn.mode.normal";
+    public static final String BTN_MODE_SPORT = "fpv20.btn.mode.sport";
+    public static final String BTN_MODE_MANUAL = "fpv20.btn.mode.manual";
     public static final String TITLE_FLIGHT_MODE = "fpv20.title.flight_mode";
+
+    // 速度高/低切换
+    public static final String BTN_SPEED_LOW = "fpv20.btn.speed.low";
+    public static final String BTN_SPEED_HIGH = "fpv20.btn.speed.high";
 }

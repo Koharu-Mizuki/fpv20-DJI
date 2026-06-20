@@ -5,7 +5,9 @@ import com.iung.fpv20.flying.GlobalFlying;
 import com.iung.fpv20.input.Controller;
 import com.iung.fpv20.utils.Utils;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.text.Text;
 
 import java.util.Objects;
 
@@ -54,6 +56,15 @@ public class SticksHud implements HudRenderCallback {
 
         int start_y = window_height - padding_down - size;
 
+        // 当前飞行模式（摇杆图正上方居中）
+        Text mode_text = GlobalFlying.G.getFlightMode().text();
+        drawContext.drawCenteredTextWithShadow(
+                MinecraftClient.getInstance().textRenderer,
+                mode_text,
+                window_width / 2,
+                start_y - 12,
+                WHITE
+        );
 
 //        drawContext.fill(start_x_1, start_y, start_x_1 + size, start_y + size, WHITE);
 //        drawContext.fill(start_x_2, start_y, start_x_2 + size, start_y + size, WHITE);
@@ -70,7 +81,14 @@ public class SticksHud implements HudRenderCallback {
 
 
     int t() {
-        return Math.round(this.t.get() * size - size / 2f);
+        float v = this.t.get(); // -1~1（MaxMidMin 居中）
+        if (GlobalFlying.G.getFlightMode().isStabilized()) {
+            // N/S：居中=悬停，油门点居中显示
+            return Math.round(v * size / 2f);
+        }
+        // M：油门从底部起算，-1~1 → 0~1
+        float v01 = (v + 1f) / 2f;
+        return Math.round(v01 * size - size / 2f);
     }
 
     int y() {

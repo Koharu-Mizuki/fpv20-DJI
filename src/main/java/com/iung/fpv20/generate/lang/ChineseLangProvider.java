@@ -50,10 +50,13 @@ public class ChineseLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(TranslateKeys.BTN_DS5_PRESET, "应用 DualSense 预设");
         translationBuilder.add(TranslateKeys.BTN_PRESET_APPLIED, "预设已应用 ✓");
-        translationBuilder.add(TranslateKeys.BTN_MODE_ACRO, "飞行模式: 手动 (Acro)");
-        translationBuilder.add(TranslateKeys.BTN_MODE_ANGLE, "飞行模式: 水平仪 (Angle)");
-        translationBuilder.add(TranslateKeys.BTN_MODE_HORIZON, "飞行模式: 地平线 (Horizon)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_NORMAL, "飞行模式: 普通 (N)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_SPORT, "飞行模式: 运动 (S)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_MANUAL, "飞行模式: 手动 (M)");
         translationBuilder.add(TranslateKeys.TITLE_FLIGHT_MODE, "飞行模式");
+
+        translationBuilder.add(TranslateKeys.BTN_SPEED_LOW, "速度: 低速 (穿越)");
+        translationBuilder.add(TranslateKeys.BTN_SPEED_HIGH, "速度: 高速 (大景)");
     }
 
 

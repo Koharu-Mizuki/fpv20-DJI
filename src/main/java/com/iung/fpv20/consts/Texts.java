@@ -40,8 +40,11 @@ public final class Texts {
     public static final Text BTN_DS5_PRESET = Text.translatable(TranslateKeys.BTN_DS5_PRESET);
     public static final Text BTN_PRESET_APPLIED = Text.translatable(TranslateKeys.BTN_PRESET_APPLIED);
 
-    public static final Text BTN_MODE_ACRO = Text.translatable(TranslateKeys.BTN_MODE_ACRO);
-    public static final Text BTN_MODE_ANGLE = Text.translatable(TranslateKeys.BTN_MODE_ANGLE);
-    public static final Text BTN_MODE_HORIZON = Text.translatable(TranslateKeys.BTN_MODE_HORIZON);
+    public static final Text BTN_MODE_NORMAL = Text.translatable(TranslateKeys.BTN_MODE_NORMAL);
+    public static final Text BTN_MODE_SPORT = Text.translatable(TranslateKeys.BTN_MODE_SPORT);
+    public static final Text BTN_MODE_MANUAL = Text.translatable(TranslateKeys.BTN_MODE_MANUAL);
     public static final Text TITLE_FLIGHT_MODE = Text.translatable(TranslateKeys.TITLE_FLIGHT_MODE);
+
+    public static final Text BTN_SPEED_LOW = Text.translatable(TranslateKeys.BTN_SPEED_LOW);
+    public static final Text BTN_SPEED_HIGH = Text.translatable(TranslateKeys.BTN_SPEED_HIGH);
 }

@@ -52,9 +52,12 @@ public class EnglishLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(TranslateKeys.BTN_DS5_PRESET, "Apply DualSense Preset");
         translationBuilder.add(TranslateKeys.BTN_PRESET_APPLIED, "Preset Applied ✓");
-        translationBuilder.add(TranslateKeys.BTN_MODE_ACRO, "Flight Mode: Acro");
-        translationBuilder.add(TranslateKeys.BTN_MODE_ANGLE, "Flight Mode: Angle");
-        translationBuilder.add(TranslateKeys.BTN_MODE_HORIZON, "Flight Mode: Horizon");
+        translationBuilder.add(TranslateKeys.BTN_MODE_NORMAL, "Flight Mode: Normal (N)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_SPORT, "Flight Mode: Sport (S)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_MANUAL, "Flight Mode: Manual (M)");
         translationBuilder.add(TranslateKeys.TITLE_FLIGHT_MODE, "Flight Mode");
+
+        translationBuilder.add(TranslateKeys.BTN_SPEED_LOW, "Speed: Low (Cine)");
+        translationBuilder.add(TranslateKeys.BTN_SPEED_HIGH, "Speed: High");
     }
 }

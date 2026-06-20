@@ -39,6 +39,35 @@ public class Fpv20ConfigClientManual {
 
     public AngularVelocity_DegSec angular_velocity__deg_sec = new AngularVelocity_DegSec();
 
+    /** N/S 自稳模式参数（速度指令模型，对标 DJI Avata 2） */
+    public static class Mode {
+        /** 水平最大速度 m/s（满杆） */
+        public float max_speed_h = 2.5f;
+        /** 垂直最大速度 m/s（满油门，居中=定高） */
+        public float max_climb = 6f;
+        /** 速度趋近目标的加速度上限 m/s²（越大越跟手/刹车越猛） */
+        public float accel = 20f;
+        /** 视觉最大倾角（度） */
+        public float max_tilt_deg = 30f;
+        /** 姿态回正增益：每 1° 误差产生的纠正角速度 度/秒 */
+        public float level_p = 8f;
+        /** 偏航角速度 度/秒 */
+        public float yaw_rate = 180f;
+    }
+
+    public Mode mode_n = new Mode();
+    public Mode mode_s = new Mode();
+
+    {
+        // S 运动档：更快、更猛、更跟手、倾角更大（速度 = 原 N 档手感）
+        mode_s.max_speed_h = 5f;
+        mode_s.max_climb = 10f;
+        mode_s.accel = 40f;
+        mode_s.max_tilt_deg = 45f;
+        mode_s.level_p = 10f;
+        mode_s.yaw_rate = 240f;
+    }
+
     public boolean free_camera_yaw = false;
     public boolean free_camera_pitch = false;
 
