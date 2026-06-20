@@ -44,7 +44,8 @@ public class GlobalFlying {
     private FlightMode flight_mode = FlightMode.NORMAL;
     private boolean last_md = false;
     private boolean last_spd = false;
-    private boolean low_speed = false;
+    private boolean low_speed = true; // 默认低速档（舒适/防飞丢），R1 切真机高速
+    private float gimbal_pitch_deg = 35f; // 云台俯仰角（下俯为正），由 L2/R2 扳机调整
 
     public FlightMode getFlightMode() {
         return this.flight_mode;
@@ -130,7 +131,7 @@ public class GlobalFlying {
 
     public Quaternionf cacl_cam_rotation() {
         Quaternionf new_r = new Quaternionf(this.droneRotation);
-        new_r.rotateLocalX(-Fpv20Client.config1.getCamera_angle() * DEG_TO_RAD);
+        new_r.rotateLocalX(-this.gimbal_pitch_deg * DEG_TO_RAD);
         return new_r;
     }
 
@@ -369,10 +370,10 @@ public class GlobalFlying {
             } else {
                 fwd.normalize();
             }
-            Vector3f right = new Vector3f(fwd.z, 0, -fwd.x); // fwd 绕 Y 轴 -90°
+            Vector3f right = new Vector3f(-fwd.z, 0, fwd.x); // fwd 绕 Y 轴 +90°（朝北时指东=右）
 
-            // 低速档：水平速度砍半（穿树林用），垂直不变
-            float max_speed_h = mp.max_speed_h * (this.low_speed ? 0.5f : 1.0f);
+            // R1 速度档：低速=舒适(穿越)，高速=真机 Avata；垂直速度不变
+            float max_speed_h = this.low_speed ? mp.max_speed_h_low : mp.max_speed_h;
 
             // 目标速度（世界系）
             Vector3f target = new Vector3f();
@@ -495,6 +496,8 @@ public class GlobalFlying {
             }
             Fpv20.LOGGER.info("start flying");
 
+            this.gimbal_pitch_deg = Fpv20Client.config1.getCamera_angle(); // 云台回到基准角
+
             drone.update_pose(PhysicsCore.from_ypr_deg(yaw, pitch, 0));
         }
         this.last_tick_flying = getFlying();
@@ -526,6 +529,13 @@ public class GlobalFlying {
             p.sendMessage(this.low_speed ? Texts.BTN_SPEED_LOW : Texts.BTN_SPEED_HIGH, true);
         }
         this.last_spd = spd;
+
+        // 云台俯仰：R2 下俯 / L2 上仰，速率控制可累积，松开保持当前角度
+        // 对标 Avata 2：可控范围 -85°(下)~+80°(上)，最大 100°/s（下俯为正）
+        float gim_down = controller.get_value_by_name("aux2"); // R2
+        float gim_up = controller.get_value_by_name("aux1");   // L2
+        this.gimbal_pitch_deg = FastMath.clamp(
+                this.gimbal_pitch_deg + (gim_down - gim_up) * 100f * dt, -80f, 85f);
 
         float cmd_y = input_y;
         float cmd_p = input_p;
