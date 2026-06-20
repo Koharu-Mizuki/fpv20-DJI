@@ -8,11 +8,16 @@
   "fpv20.btn.calibrate_center": "校准摇杆中点",
   "fpv20.btn.calibrate_range": "校准摇杆行程",
   "fpv20.btn.control_screen_entry": "FPV 无人机",
+  "fpv20.btn.ds5_preset": "应用 DualSense 预设",
   "fpv20.btn.end": "结束",
+  "fpv20.btn.mode.acro": "飞行模式: 手动 (Acro)",
+  "fpv20.btn.mode.angle": "飞行模式: 水平仪 (Angle)",
+  "fpv20.btn.mode.horizon": "飞行模式: 地平线 (Horizon)",
   "fpv20.btn.no_reversed": "不反转输入信号",
   "fpv20.btn.option": "选项",
   "fpv20.btn.osd.off": "显示摇杆图: 关",
   "fpv20.btn.osd.on": "显示摇杆图: 开",
+  "fpv20.btn.preset_applied": "预设已应用 ✓",
   "fpv20.btn.reload_config": "重新加载配置",
   "fpv20.btn.reversed": "反转输入信号",
   "fpv20.btn.select": "选择",
@@ -23,5 +28,6 @@
   "fpv20.keybinds.category": "FPV无人机",
   "fpv20.rate.1": "灵敏度: %s",
   "fpv20.text.set_channel_name": "设置通道名称",
+  "fpv20.title.flight_mode": "飞行模式",
   "fpv20.title.main_option_screen": "FPV 无人机设置"
 }

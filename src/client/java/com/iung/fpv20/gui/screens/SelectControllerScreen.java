@@ -2,6 +2,7 @@ package com.iung.fpv20.gui.screens;
 
 import com.iung.fpv20.gui.entry.SelectControllerEntry;
 import com.iung.fpv20.gui.list.SelectControllerList;
+import com.iung.fpv20.input.DS5Preset;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import org.lwjgl.glfw.GLFW;
@@ -38,7 +39,8 @@ public class SelectControllerScreen extends BackableScreen {
             String name = GLFW.glfwGetJoystickName(id);
 
             if (name != null) {
-                l1.addEntry(new SelectControllerEntry(this, id, name));
+                boolean isDS5 = DS5Preset.isDS5(name);
+                l1.addEntry(new SelectControllerEntry(this, id, name, isDS5));
             }
 
         }

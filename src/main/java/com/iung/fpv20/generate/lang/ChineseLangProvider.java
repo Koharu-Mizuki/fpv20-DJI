@@ -47,6 +47,13 @@ public class ChineseLangProvider extends FabricLanguageProvider {
         translationBuilder.add(TranslateKeys.BTN_OSD_OFF, "显示摇杆图: 关");
         translationBuilder.add(TranslateKeys.KEYBINDS_CATEGORY, "FPV无人机");
         translationBuilder.add(TranslateKeys.KEYBIND_OSD, "切换摇杆图显示");
+
+        translationBuilder.add(TranslateKeys.BTN_DS5_PRESET, "应用 DualSense 预设");
+        translationBuilder.add(TranslateKeys.BTN_PRESET_APPLIED, "预设已应用 ✓");
+        translationBuilder.add(TranslateKeys.BTN_MODE_ACRO, "飞行模式: 手动 (Acro)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_ANGLE, "飞行模式: 水平仪 (Angle)");
+        translationBuilder.add(TranslateKeys.BTN_MODE_HORIZON, "飞行模式: 地平线 (Horizon)");
+        translationBuilder.add(TranslateKeys.TITLE_FLIGHT_MODE, "飞行模式");
     }
 
 

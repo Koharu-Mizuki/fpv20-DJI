@@ -6,6 +6,7 @@ import com.iung.fpv20.config.Fpv20ConfigClientManual;
 import com.iung.fpv20.config.Fpv20ConfigCommon;
 import com.iung.fpv20.consts.Texts;
 import com.iung.fpv20.flying.GlobalFlying;
+import com.iung.fpv20.input.DS5Preset;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
@@ -59,6 +60,15 @@ public class OptionsMainScreen extends BackableScreen {
                     Fpv20.config = Fpv20ConfigCommon.createAndLoad();
                 })
                 .dimensions(i, k, width, height).build());
+
+        // 仅当已选择控制器时，显示「应用 DualSense 预设」按钮
+        if (Fpv20Client.controller != null) {
+            this.addDrawableChild(ButtonWidget.builder(Texts.BTN_DS5_PRESET, (btn) -> {
+                        DS5Preset.apply(Fpv20Client.controller);
+                        btn.setMessage(Texts.BTN_PRESET_APPLIED);
+                    })
+                    .dimensions(j, k, width, height).build());
+        }
 
 
 /////////////

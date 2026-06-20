@@ -40,4 +40,14 @@ public final class TranslateKeys {
     public static final String KEYBINDS_CATEGORY = "fpv20.keybinds.category";
 
     public static final String KEYBIND_OSD = "fpv20.keybind.osd";
+
+    // DS5 预设相关
+    public static final String BTN_DS5_PRESET = "fpv20.btn.ds5_preset";
+    public static final String BTN_PRESET_APPLIED = "fpv20.btn.preset_applied";
+
+    // 飞行模式
+    public static final String BTN_MODE_ACRO = "fpv20.btn.mode.acro";
+    public static final String BTN_MODE_ANGLE = "fpv20.btn.mode.angle";
+    public static final String BTN_MODE_HORIZON = "fpv20.btn.mode.horizon";
+    public static final String TITLE_FLIGHT_MODE = "fpv20.title.flight_mode";
 }

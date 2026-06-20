@@ -49,5 +49,12 @@ public class EnglishLangProvider extends FabricLanguageProvider {
         translationBuilder.add(TranslateKeys.BTN_OSD_OFF, "show osd: no");
         translationBuilder.add(TranslateKeys.KEYBINDS_CATEGORY, "fpv20");
         translationBuilder.add(TranslateKeys.KEYBIND_OSD, "Toggle OSD");
+
+        translationBuilder.add(TranslateKeys.BTN_DS5_PRESET, "Apply DualSense Preset");
+        translationBuilder.add(TranslateKeys.BTN_PRESET_APPLIED, "Preset Applied ✓");
+        translationBuilder.add(TranslateKeys.BTN_MODE_ACRO, "Flight Mode: Acro");
+        translationBuilder.add(TranslateKeys.BTN_MODE_ANGLE, "Flight Mode: Angle");
+        translationBuilder.add(TranslateKeys.BTN_MODE_HORIZON, "Flight Mode: Horizon");
+        translationBuilder.add(TranslateKeys.TITLE_FLIGHT_MODE, "Flight Mode");
     }
 }

@@ -36,4 +36,12 @@ public final class Texts {
     public static final Text BTN_OSD_ON = Text.translatable(TranslateKeys.BTN_OSD_ON);
 
     public static final Text BTN_OSD_OFF = Text.translatable(TranslateKeys.BTN_OSD_OFF);
+
+    public static final Text BTN_DS5_PRESET = Text.translatable(TranslateKeys.BTN_DS5_PRESET);
+    public static final Text BTN_PRESET_APPLIED = Text.translatable(TranslateKeys.BTN_PRESET_APPLIED);
+
+    public static final Text BTN_MODE_ACRO = Text.translatable(TranslateKeys.BTN_MODE_ACRO);
+    public static final Text BTN_MODE_ANGLE = Text.translatable(TranslateKeys.BTN_MODE_ANGLE);
+    public static final Text BTN_MODE_HORIZON = Text.translatable(TranslateKeys.BTN_MODE_HORIZON);
+    public static final Text TITLE_FLIGHT_MODE = Text.translatable(TranslateKeys.TITLE_FLIGHT_MODE);
 }
