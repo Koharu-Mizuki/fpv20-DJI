@@ -1,5 +1,7 @@
 {
   "block.fpv20.receiver_block": "信号接收器",
+  "fpv20.btn.allow_manual.off": "手动档 (M): 锁定",
+  "fpv20.btn.allow_manual.on": "手动档 (M): 已解锁",
   "fpv20.btn.btn_config": "按钮或开关设置",
   "fpv20.btn.calibrate": "校准",
   "fpv20.btn.calibrate.max_mid_min": "校准方法: 最大-中点-最小",

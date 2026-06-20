@@ -57,6 +57,9 @@ public class ChineseLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(TranslateKeys.BTN_SPEED_LOW, "速度: 低速 (穿越)");
         translationBuilder.add(TranslateKeys.BTN_SPEED_HIGH, "速度: 高速 (大景)");
+
+        translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_ON, "手动档 (M): 已解锁");
+        translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_OFF, "手动档 (M): 锁定");
     }
 
 

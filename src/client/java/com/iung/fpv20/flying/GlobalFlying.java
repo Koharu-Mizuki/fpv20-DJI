@@ -514,10 +514,20 @@ public class GlobalFlying {
         float input_p = controller.get_value_by_name("p");
         float input_r = controller.get_value_by_name("r");
 
-        // 飞行模式切换：md 按钮上升沿循环 N→S→M
+        // M 手动档锁定时，强制退回 N（防止从设置里关掉解锁后还卡在 M）
+        boolean allow_manual = Fpv20Client.config.allow_manual_mode();
+        if (this.flight_mode == FlightMode.MANUAL && !allow_manual) {
+            this.flight_mode = FlightMode.NORMAL;
+        }
+
+        // 飞行模式切换：md 按钮上升沿循环 N→S→(M)；M 未解锁则跳过
         boolean md = controller.get_value_by_name("md") > 0.5f;
         if (md && !this.last_md) {
-            this.flight_mode = this.flight_mode.next();
+            FlightMode next = this.flight_mode.next();
+            if (next == FlightMode.MANUAL && !allow_manual) {
+                next = next.next(); // 跳过锁定的 M，回到 N
+            }
+            this.flight_mode = next;
             p.sendMessage(this.flight_mode.text(), true); // true = action bar 提示
         }
         this.last_md = md;

@@ -1,5 +1,7 @@
 {
   "block.fpv20.receiver_block": "receiver block",
+  "fpv20.btn.allow_manual.off": "Manual (M): Locked",
+  "fpv20.btn.allow_manual.on": "Manual (M): Unlocked",
   "fpv20.btn.btn_config": "button/switch config",
   "fpv20.btn.calibrate": "calibrate",
   "fpv20.btn.calibrate.max_mid_min": "method:max zero min",

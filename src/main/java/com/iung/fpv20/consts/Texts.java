@@ -47,4 +47,7 @@ public final class Texts {
 
     public static final Text BTN_SPEED_LOW = Text.translatable(TranslateKeys.BTN_SPEED_LOW);
     public static final Text BTN_SPEED_HIGH = Text.translatable(TranslateKeys.BTN_SPEED_HIGH);
+
+    public static final Text BTN_ALLOW_MANUAL_ON = Text.translatable(TranslateKeys.BTN_ALLOW_MANUAL_ON);
+    public static final Text BTN_ALLOW_MANUAL_OFF = Text.translatable(TranslateKeys.BTN_ALLOW_MANUAL_OFF);
 }

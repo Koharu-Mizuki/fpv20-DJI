@@ -18,6 +18,8 @@ public class Fpv20ClientConfig1 {
 
     private boolean show_osd = true;
 
+    private boolean allow_manual_mode = false; // M 手动档默认锁定，需在设置里解锁（悟3 姿态档同款安全设计）
+
     public int selected_controller() {
         return selected_controller;
     }
@@ -93,4 +95,7 @@ public class Fpv20ClientConfig1 {
 
     public boolean show_osd(){ return show_osd; }
     public void setShow_osd(boolean value){ show_osd = value; }
+
+    public boolean allow_manual_mode(){ return allow_manual_mode; }
+    public void setAllow_manual_mode(boolean value){ allow_manual_mode = value; }
 }

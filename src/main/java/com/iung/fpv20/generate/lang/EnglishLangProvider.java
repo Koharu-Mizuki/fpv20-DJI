@@ -59,5 +59,8 @@ public class EnglishLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(TranslateKeys.BTN_SPEED_LOW, "Speed: Low (Cine)");
         translationBuilder.add(TranslateKeys.BTN_SPEED_HIGH, "Speed: High");
+
+        translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_ON, "Manual (M): Unlocked");
+        translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_OFF, "Manual (M): Locked");
     }
 }

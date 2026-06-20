@@ -69,6 +69,18 @@ public class OptionsMainScreen extends BackableScreen {
                     })
                     .dimensions(j, k, width, height).build());
         }
+        k += 24;
+
+        // 手动档(M)解锁开关：默认锁定，开启后 △ 循环才会出现 M 档（悟3 姿态档同款安全设计）
+        this.addDrawableChild(ButtonWidget.builder(
+                        Fpv20Client.config.allow_manual_mode() ? Texts.BTN_ALLOW_MANUAL_ON : Texts.BTN_ALLOW_MANUAL_OFF,
+                        (btn) -> {
+                            Fpv20Client.config.setAllow_manual_mode(!Fpv20Client.config.allow_manual_mode());
+                            if (this.client != null) {
+                                this.client.setScreen(new OptionsMainScreen(this.parent));
+                            }
+                        })
+                .dimensions(i, k, width, height).build());
 
 
 /////////////

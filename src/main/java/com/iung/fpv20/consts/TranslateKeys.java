@@ -54,4 +54,8 @@ public final class TranslateKeys {
     // 速度高/低切换
     public static final String BTN_SPEED_LOW = "fpv20.btn.speed.low";
     public static final String BTN_SPEED_HIGH = "fpv20.btn.speed.high";
+
+    // 手动档(M)解锁开关
+    public static final String BTN_ALLOW_MANUAL_ON = "fpv20.btn.allow_manual.on";
+    public static final String BTN_ALLOW_MANUAL_OFF = "fpv20.btn.allow_manual.off";
 }
