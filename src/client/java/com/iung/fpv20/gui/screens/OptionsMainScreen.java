@@ -8,6 +8,7 @@ import com.iung.fpv20.consts.Texts;
 import com.iung.fpv20.flying.GlobalFlying;
 import com.iung.fpv20.input.DS5Preset;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 
@@ -81,6 +82,22 @@ public class OptionsMainScreen extends BackableScreen {
                             }
                         })
                 .dimensions(i, k, width, height).build());
+
+        // 飞行视角循环：默认 → 隐藏右手 → 沉浸旁观（鼠标悬浮提示沉浸旁观需 OP）
+        Text viewText;
+        switch (Fpv20Client.config.flight_view_mode()) {
+            case 2 -> viewText = Texts.BTN_VIEW_SPECTATOR;
+            case 1 -> viewText = Texts.BTN_VIEW_CINEMATIC;
+            default -> viewText = Texts.BTN_VIEW_DEFAULT;
+        }
+        this.addDrawableChild(ButtonWidget.builder(viewText, (btn) -> {
+                    Fpv20Client.config.setFlight_view_mode(Fpv20Client.config.flight_view_mode() + 1);
+                    if (this.client != null) {
+                        this.client.setScreen(new OptionsMainScreen(this.parent));
+                    }
+                })
+                .tooltip(Tooltip.of(Texts.TOOLTIP_VIEW_SPECTATOR_OP))
+                .dimensions(j, k, width, height).build());
 
 
 /////////////

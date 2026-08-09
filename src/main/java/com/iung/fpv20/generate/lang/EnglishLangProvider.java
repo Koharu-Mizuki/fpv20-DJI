@@ -62,5 +62,10 @@ public class EnglishLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_ON, "Manual (M): Unlocked");
         translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_OFF, "Manual (M): Locked");
+
+        translationBuilder.add(TranslateKeys.BTN_VIEW_DEFAULT, "Flight View: Default");
+        translationBuilder.add(TranslateKeys.BTN_VIEW_CINEMATIC, "Flight View: Cinematic (F8)");
+        translationBuilder.add(TranslateKeys.BTN_VIEW_SPECTATOR, "Flight View: Immersive (Spectator)");
+        translationBuilder.add(TranslateKeys.TOOLTIP_VIEW_SPECTATOR_OP, "Immersive switches to Spectator — requires OP / cheats");
     }
 }

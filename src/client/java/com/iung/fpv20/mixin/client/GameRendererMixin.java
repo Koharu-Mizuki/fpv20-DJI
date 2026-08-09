@@ -156,6 +156,7 @@ public class GameRendererMixin {
             at = @At("HEAD"), cancellable = true
     )
     public void mixin12(MatrixStack matrices, Camera camera, float tickDelta, CallbackInfo ci) {
+        // 飞行时永远不渲染第一人称右手（无人机视角本就不该有手）
         if (GlobalFlying.getFlying()) {
             ci.cancel();
         }

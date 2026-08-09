@@ -50,4 +50,9 @@ public final class Texts {
 
     public static final Text BTN_ALLOW_MANUAL_ON = Text.translatable(TranslateKeys.BTN_ALLOW_MANUAL_ON);
     public static final Text BTN_ALLOW_MANUAL_OFF = Text.translatable(TranslateKeys.BTN_ALLOW_MANUAL_OFF);
+
+    public static final Text BTN_VIEW_DEFAULT = Text.translatable(TranslateKeys.BTN_VIEW_DEFAULT);
+    public static final Text BTN_VIEW_CINEMATIC = Text.translatable(TranslateKeys.BTN_VIEW_CINEMATIC);
+    public static final Text BTN_VIEW_SPECTATOR = Text.translatable(TranslateKeys.BTN_VIEW_SPECTATOR);
+    public static final Text TOOLTIP_VIEW_SPECTATOR_OP = Text.translatable(TranslateKeys.TOOLTIP_VIEW_SPECTATOR_OP);
 }

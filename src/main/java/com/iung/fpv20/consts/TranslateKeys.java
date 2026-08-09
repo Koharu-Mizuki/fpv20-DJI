@@ -58,4 +58,10 @@ public final class TranslateKeys {
     // 手动档(M)解锁开关
     public static final String BTN_ALLOW_MANUAL_ON = "fpv20.btn.allow_manual.on";
     public static final String BTN_ALLOW_MANUAL_OFF = "fpv20.btn.allow_manual.off";
+
+    // 飞行视角（默认/隐藏右手/沉浸旁观）
+    public static final String BTN_VIEW_DEFAULT = "fpv20.btn.view.default";
+    public static final String BTN_VIEW_CINEMATIC = "fpv20.btn.view.cinematic";
+    public static final String BTN_VIEW_SPECTATOR = "fpv20.btn.view.spectator";
+    public static final String TOOLTIP_VIEW_SPECTATOR_OP = "fpv20.tooltip.view.spectator_op";
 }

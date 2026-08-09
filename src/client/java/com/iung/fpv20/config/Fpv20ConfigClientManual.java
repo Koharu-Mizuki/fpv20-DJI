@@ -55,6 +55,11 @@ public class Fpv20ConfigClientManual {
         public float level_p = 8f;
         /** 偏航角速度 度/秒 */
         public float yaw_rate = 180f;
+        /** 摇杆死区（0~1）：中心一圈内不响应，DS5 不回中也不乱飘、可精准控制 */
+        public float deadzone = 0.1f;
+        /** 摇杆 expo 曲线（0~1）：0=线性，越大中段越柔、贴地越精准；满杆仍能到顶。
+         *  DS5 等迷你/粗摇杆建议 0.6~0.8（小白友好，对标 Mavic N 档） */
+        public float expo = 0.7f;
     }
 
     public Mode mode_n = new Mode();

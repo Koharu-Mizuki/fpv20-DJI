@@ -60,6 +60,11 @@ public class ChineseLangProvider extends FabricLanguageProvider {
 
         translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_ON, "手动档 (M): 已解锁");
         translationBuilder.add(TranslateKeys.BTN_ALLOW_MANUAL_OFF, "手动档 (M): 锁定");
+
+        translationBuilder.add(TranslateKeys.BTN_VIEW_DEFAULT, "飞行视角: 默认");
+        translationBuilder.add(TranslateKeys.BTN_VIEW_CINEMATIC, "飞行视角: 电影模式 (F8)");
+        translationBuilder.add(TranslateKeys.BTN_VIEW_SPECTATOR, "飞行视角: 沉浸旁观");
+        translationBuilder.add(TranslateKeys.TOOLTIP_VIEW_SPECTATOR_OP, "沉浸旁观会切到旁观模式，需要 OP / 作弊权限");
     }
 
 

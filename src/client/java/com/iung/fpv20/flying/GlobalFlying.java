@@ -15,7 +15,9 @@ import com.iung.fpv20.sound.FlyingSound;
 import com.iung.fpv20.utils.FastMath;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.world.GameMode;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Quaternionf;
@@ -77,6 +79,29 @@ public class GlobalFlying {
         return this.speed;
     }
 
+    /** 取摇杆线性校准值（不含竞速 rate 曲线），按通道名 */
+    private static float stick_linear(Controller c, String name) {
+        int id = c.get_channel_id(name);
+        return id >= 0 ? c.get_calibrated_value_no_rate(id) : 0f;
+    }
+
+    /** 死区映射：|v|<dz 归零，区外重新拉伸到满量程，保证平滑无突变 */
+    private static float apply_deadzone(float v, float dz) {
+        if (dz <= 0f) {
+            return v;
+        }
+        float a = Math.abs(v);
+        if (a < dz) {
+            return 0f;
+        }
+        return Math.signum(v) * (a - dz) / (1f - dz);
+    }
+
+    /** expo 曲线：0=线性，越大中段越柔（贴地精准），满杆仍到顶 */
+    private static float apply_expo(float v, float expo) {
+        return (1f - expo) * v + expo * v * v * v;
+    }
+
 
     private static float time_now_float() {
         return (float) ((double) System.nanoTime() / 1000_000_000.d);
@@ -102,6 +127,9 @@ public class GlobalFlying {
         this.this_tick_nano = System.nanoTime() + 1;
     }
 
+    private static GameMode saved_gamemode = null; // 沉浸旁观：进入飞行前的原游戏模式
+    private static boolean saved_smooth_camera = false; // 电影模式：进入飞行前的鼠标平滑状态
+
     public static void setFlying(boolean if_fly) {
         MinecraftClient client = MinecraftClient.getInstance();
         ClientPlayerEntity player = client.player;
@@ -113,6 +141,32 @@ public class GlobalFlying {
             }
             p.set_is_flying(if_fly);
             client.getSoundManager().play(new FlyingSound(player));
+
+            // 电影模式：飞行时开启 MC 鼠标平滑(F8 smoothCamera)，结束恢复
+            if (Fpv20Client.config.flight_view_mode() == 1 && client.options != null) {
+                if (if_fly) {
+                    saved_smooth_camera = client.options.smoothCameraEnabled;
+                    client.options.smoothCameraEnabled = true;
+                } else {
+                    client.options.smoothCameraEnabled = saved_smooth_camera;
+                }
+            }
+
+            // 沉浸旁观：飞行时切 spectator（需 OP/作弊权限），结束恢复原模式
+            if (Fpv20Client.config.flight_view_mode() == 2) {
+                ClientPlayNetworkHandler nh = client.getNetworkHandler();
+                if (nh != null) {
+                    if (if_fly) {
+                        if (client.interactionManager != null) {
+                            saved_gamemode = client.interactionManager.getCurrentGameMode();
+                        }
+                        nh.sendChatCommand("gamemode spectator");
+                    } else if (saved_gamemode != null) {
+                        nh.sendChatCommand("gamemode " + saved_gamemode.getName());
+                        saved_gamemode = null;
+                    }
+                }
+            }
         }
     }
 
@@ -358,9 +412,12 @@ public class GlobalFlying {
             Fpv20ConfigClientManual.Mode mp =
                     (this.flight_mode == FlightMode.NORMAL) ? config1.mode_n : config1.mode_s;
 
-            float in_p = controller.get_value_by_name("p"); // 俯仰杆 → 前后
-            float in_r = controller.get_value_by_name("r"); // 横滚杆 → 左右
-            float in_t = controller.get_value_by_name("t"); // 油门 -1~1，0=定高
+            // N/S 用线性值（不套竞速 superExpo 曲线）+ 死区 + 温和 expo，电影机般精准、不突变
+            float dz = mp.deadzone;
+            float ex = mp.expo;
+            float in_p = apply_expo(apply_deadzone(stick_linear(controller, "p"), dz), ex); // 俯仰 → 前后
+            float in_r = apply_expo(apply_deadzone(stick_linear(controller, "r"), dz), ex); // 横滚 → 左右
+            float in_t = apply_expo(apply_deadzone(stick_linear(controller, "t"), dz), ex); // 油门 -1~1，0=定高
 
             // 由机体朝向取水平前进/右向单位向量（与 DefaultDrone 同款 conjugate 约定）
             Vector3f fwd = new Vector3f(0, 0, -1).rotate(drone.get_pose().conjugate());

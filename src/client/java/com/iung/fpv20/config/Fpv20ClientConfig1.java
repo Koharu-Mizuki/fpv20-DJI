@@ -20,6 +20,8 @@ public class Fpv20ClientConfig1 {
 
     private boolean allow_manual_mode = false; // M 手动档默认锁定，需在设置里解锁（悟3 姿态档同款安全设计）
 
+    private int flight_view_mode = 1; // 飞行视角：0=默认显示右手 1=隐藏右手 2=沉浸旁观(切 spectator)
+
     public int selected_controller() {
         return selected_controller;
     }
@@ -98,4 +100,7 @@ public class Fpv20ClientConfig1 {
 
     public boolean allow_manual_mode(){ return allow_manual_mode; }
     public void setAllow_manual_mode(boolean value){ allow_manual_mode = value; }
+
+    public int flight_view_mode(){ return flight_view_mode; }
+    public void setFlight_view_mode(int value){ flight_view_mode = ((value % 3) + 3) % 3; }
 }
